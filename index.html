@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samir Ali | Senior Full-Stack Developer & Systems Administrator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857'
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #059669;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #34d399 0%, #22d3ee 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+        }
+
+        .terminal-cursor::after {
+            content: '▋';
+            animation: cursorBlink 1s step-start infinite;
+        }
+
+        @keyframes cursorBlink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased transition-colors duration-300 selection:bg-emerald-500 selection:text-white" id="appBody">
+
+    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center gap-2 font-mono text-xl font-bold tracking-wider group">
+                    <span class="text-emerald-400 group-hover:rotate-12 transition-transform">&lt;</span>
+                    <span class="gradient-text font-black text-2xl">Samir.Ali</span>
+                    <span class="text-cyan-400 group-hover:-rotate-12 transition-transform">/&gt;</span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#about" class="text-slate-300 hover:text-emerald-400 transition-colors">About</a>
+                    <a href="#projects" class="text-slate-300 hover:text-emerald-400 transition-colors">Projects</a>
+                    <a href="#estimator" class="text-slate-300 hover:text-emerald-400 transition-colors">Cost Estimator</a>
+                    <a href="#skills" class="text-slate-300 hover:text-emerald-400 transition-colors">Skills</a>
+                    <a href="#experience" class="text-slate-300 hover:text-emerald-400 transition-colors">Experience</a>
+                    <a href="#contact" class="text-slate-300 hover:text-emerald-400 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Action Controls -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://github.com/samirosman2" target="_blank" class="p-2.5 rounded-xl bg-slate-900 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-800 transition-all" title="GitHub Profile">
+                        <i class="fa-brands fa-github text-base"></i>
+                    </a>
+                    <button onclick="toggleTheme()" class="p-2.5 rounded-xl bg-slate-900 text-slate-300 hover:text-emerald-400 hover:bg-slate-800 border border-slate-800 transition-all" title="Toggle Light/Dark Theme">
+                        <i class="fa-solid fa-moon text-base" id="themeIcon"></i>
+                    </button>
+                    <a href="#contact" class="px-4 py-2.5 rounded-xl gradient-bg text-white text-sm font-semibold shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 transition-all">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <div class="flex sm:hidden items-center gap-2">
+                    <button onclick="toggleTheme()" class="p-2 rounded-lg bg-slate-900 text-slate-300">
+                        <i class="fa-solid fa-moon text-sm" id="themeIconMobile"></i>
+                    </button>
+                    <button onclick="toggleMobileNav()" class="p-2 rounded-lg bg-slate-900 text-slate-300">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div id="mobileNav" class="hidden sm:hidden bg-slate-950/95 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3 font-mono text-sm">
+            <a href="#about" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">About</a>
+            <a href="#projects" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Projects</a>
+            <a href="#estimator" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Cost Estimator</a>
+            <a href="#skills" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Skills</a>
+            <a href="#experience" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Experience</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="block px-3 py-2 rounded-lg hover:bg-slate-900 text-slate-200">Contact</a>
+            <a href="#contact" onclick="toggleMobileNav()" class="block text-center mt-3 py-2.5 rounded-xl gradient-bg text-white font-semibold">Get In Touch</a>
+        </div>
+    </header>
+
+    <section id="hero" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden flex items-center min-h-screen">
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-card border border-emerald-500/30 text-emerald-400 text-xs sm:text-sm font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Freelance Web Developer & Systems Admin Since 2002
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Hi, I'm <span class="gradient-text">Samir Ali</span>
+                    </h1>
+
+                    <div class="text-xl sm:text-2xl font-mono text-slate-300 h-10 flex items-center justify-center lg:justify-start">
+                        <span>Specializing in&nbsp;</span>
+                        <span id="typedHero" class="text-emerald-400 font-bold terminal-cursor"></span>
+                    </div>
+
+                    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        With over 22 years of full-stack development experience spanning Oman, Germany, and Thailand, I architect high-performance custom React web dashboards, enterprise WordPress solutions, payment gateways, and modern AI automation workflows.
+                    </p>
+
+                    <!-- Hero CTAs -->
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl gradient-bg text-white font-semibold flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all">
+                            <i class="fa-solid fa-briefcase"></i> View Featured Projects
+                        </a>
+                        <a href="https://github.com/samirosman2" target="_blank" class="px-6 py-3.5 rounded-xl glass-card hover:bg-slate-900 text-slate-200 font-semibold border border-slate-800 flex items-center gap-2 hover:-translate-y-0.5 transition-all">
+                            <i class="fa-brands fa-github text-emerald-400"></i> Explore GitHub
+                        </a>
+                    </div>
+
+                    <!-- Statistics Bar -->
+                    <div class="pt-8 border-t border-slate-800/80 grid grid-cols-3 gap-4 font-mono text-center lg:text-left">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-emerald-400">22+</span>
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Years Exp.</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-cyan-400">100+</span>
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Websites Built</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-blue-400">3</span>
+                            <span class="text-xs text-slate-400 uppercase tracking-wider">Countries</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Interactive Code Terminal -->
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-2xl shadow-2xl overflow-hidden border border-slate-800 font-mono text-xs sm:text-sm">
+                        <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500 inline-block"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                            </div>
+                            <span class="text-slate-400 text-xs font-semibold">samir-profile.ts</span>
+                            <i class="fa-solid fa-terminal text-emerald-400"></i>
+                        </div>
+                        <div class="p-5 bg-slate-950 text-slate-200 space-y-2 leading-relaxed">
+                            <p class="text-slate-500">// Senior Full-Stack Developer & Systems Administrator</p>
+                            <p><span class="text-purple-400">export const</span> <span class="text-emerald-400">samirAli</span> = {</p>
+                            <p class="pl-4"><span class="text-cyan-400">freelancingSince</span>: <span class="text-amber-400">2002</span>,</p>
+                            <p class="pl-4"><span class="text-cyan-400">primaryStack</span>: [<span class="text-emerald-300">'React'</span>, <span class="text-emerald-300">'Node.js'</span>, <span class="text-emerald-300">'PHP'</span>, <span class="text-emerald-300">'WordPress'</span>],</p>
+                            <p class="pl-4"><span class="text-cyan-400">paymentIntegrations</span>: [<span class="text-amber-300">'Thawani Oman'</span>, <span class="text-amber-300">'Stripe SEPA'</span>],</p>
+                            <p class="pl-4"><span class="text-cyan-400">currentFocus</span>: <span class="text-emerald-300">'AI Automation & Workflow Agents'</span>,</p>
+                            <p class="pl-4"><span class="text-cyan-400">globalClients</span>: [<span class="text-amber-300">'Oman 🇴🇲'</span>, <span class="text-amber-300">'Germany 🇩🇪'</span>, <span class="text-amber-300">'Thailand 🇹🇭'</span>],</p>
+                            <p class="pl-4"><span class="text-cyan-400">availableForHire</span>: <span class="text-purple-400">true</span></p>
+                            <p>};</p>
+                        </div>
+                        <div class="bg-slate-900/80 px-4 py-3 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                            <span>Status: <strong class="text-emerald-400">Available for Contracts</strong></span>
+                            <a href="#contact" class="text-emerald-400 hover:underline">Hire Samir &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-16 bg-slate-900/30 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-400">About Me</h2>
+                    <h3 class="text-3xl font-extrabold text-slate-100">Architecting Reliable Digital Systems Since 2002</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        I am a Freelance Web Developer and Systems Administrator with a strong track record spanning more than two decades. Over the years, I have helped businesses in legal, medical, corporate IT, and wellness sectors establish their online presence and optimize operational workflows.
+                    </p>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        My skill set covers the full stack: from modern React frontends and tailored WordPress CMS architectures to complex PHP backends, payment gateway SDKs (such as Thawani Oman and localized Stripe implementations for Europe), and current cutting-edge AI automation agents.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 gap-4 font-mono text-xs">
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <i class="fa-solid fa-code text-emerald-400 text-2xl"></i>
+                        <h4 class="font-bold text-slate-200">Full-Stack Dev</h4>
+                        <p class="text-slate-400 text-[11px]">React, Tailwind, Node.js, PHP, & MySQL</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <i class="fa-solid fa-credit-card text-cyan-400 text-2xl"></i>
+                        <h4 class="font-bold text-slate-200">Payment APIs</h4>
+                        <p class="text-slate-400 text-[11px]">Thawani Oman SDK & Stripe SEPA / Giropay</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <i class="fa-solid fa-robot text-purple-400 text-2xl"></i>
+                        <h4 class="font-bold text-slate-200">AI Workflows</h4>
+                        <p class="text-slate-400 text-[11px]">n8n, LLM APIs, & Intelligent Automations</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-2">
+                        <i class="fa-brands fa-wordpress text-amber-400 text-2xl"></i>
+                        <h4 class="font-bold text-slate-200">WordPress Architect</h4>
+                        <p class="text-slate-400 text-[11px]">Custom Theme & Plugin Engineering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 relative border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-400 mb-2">Portfolio & Case Studies</h2>
+                    <p class="text-3xl sm:text-4xl font-extrabold text-slate-100">Featured Real-World Works</p>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <button onclick="filterProjects('all')" class="proj-tab active-tab px-4 py-2 rounded-xl bg-emerald-600 text-white transition-all">All Projects</button>
+                    <button onclick="filterProjects('custom')" class="proj-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">Custom Web Apps</button>
+                    <button onclick="filterProjects('wordpress')" class="proj-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">WordPress</button>
+                    <button onclick="filterProjects('fintech_ai')" class="proj-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all">FinTech & AI</button>
+                </div>
+            </div>
+
+            <!-- Projects Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsContainer">
+                <!-- Projects populated dynamically via JavaScript -->
+            </div>
+
+        </div>
+    </section>
+
+    <section id="estimator" class="py-20 bg-slate-900/40 relative border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-400 mb-2">Transparent Planning</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-100">Interactive Scope & Cost Estimator</p>
+                <p class="text-slate-400 text-sm mt-2">Select your project type and add-ons to calculate a rough scope estimate and instantly pre-fill your direct email inquiry.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Options Selection -->
+                <div class="lg:col-span-8 space-y-6">
+                    
+                    <!-- 1. Base Project Type -->
+                    <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3">
+                        <label class="block font-bold text-slate-200 text-sm font-mono">1. Select Project Baseline</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button type="button" onclick="selectEstimatorType('custom_app', 1800, 'Custom React / PHP Dashboard App', this)" class="estimator-btn active-est-btn p-4 rounded-xl bg-slate-900 border border-emerald-500 text-left transition-all">
+                                <div class="flex items-center gap-2 font-bold text-slate-200 text-sm">
+                                    <i class="fa-brands fa-react text-emerald-400"></i> Custom React / PHP App
+                                </div>
+                                <div class="text-xs text-slate-400 mt-1">Single page application, Tailwind UI, PHP API</div>
+                            </button>
+
+                            <button type="button" onclick="selectEstimatorType('wordpress', 800, 'Corporate WordPress Website', this)" class="estimator-btn p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all">
+                                <div class="flex items-center gap-2 font-bold text-slate-200 text-sm">
+                                    <i class="fa-brands fa-wordpress text-cyan-400"></i> Enterprise WordPress Site
+                                </div>
+                                <div class="text-xs text-slate-400 mt-1">Tailored theme, CMS, SEO, & responsive layout</div>
+                            </button>
+
+                            <button type="button" onclick="selectEstimatorType('payment', 1000, 'Payment Gateway Integration', this)" class="estimator-btn p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all">
+                                <div class="flex items-center gap-2 font-bold text-slate-200 text-sm">
+                                    <i class="fa-solid fa-credit-card text-amber-400"></i> Payment Integration SDK
+                                </div>
+                                <div class="text-xs text-slate-400 mt-1">Thawani Oman E-Payment / Stripe SEPA</div>
+                            </button>
+
+                            <button type="button" onclick="selectEstimatorType('ai_auto', 1200, 'AI Workflow Automation System', this)" class="estimator-btn p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all">
+                                <div class="flex items-center gap-2 font-bold text-slate-200 text-sm">
+                                    <i class="fa-solid fa-robot text-purple-400"></i> AI Agent & Workflows
+                                </div>
+                                <div class="text-xs text-slate-400 mt-1">n8n pipeline, LLM APIs, automated leads</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Add-on Features -->
+                    <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-3">
+                        <label class="block font-bold text-slate-200 text-sm font-mono">2. Add-on Features & Integrations</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:bg-slate-800 transition-colors">
+                                <input type="checkbox" onchange="calcEstimate()" value="400" class="est-feature w-4 h-4 accent-emerald-500">
+                                <span class="text-slate-300">Custom Admin Dashboard (+$400)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:bg-slate-800 transition-colors">
+                                <input type="checkbox" onchange="calcEstimate()" value="350" class="est-feature w-4 h-4 accent-emerald-500">
+                                <span class="text-slate-300">Multilingual (Arabic/English/German) (+$350)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:bg-slate-800 transition-colors">
+                                <input type="checkbox" onchange="calcEstimate()" value="300" class="est-feature w-4 h-4 accent-emerald-500">
+                                <span class="text-slate-300">Automated Email & Booking Notifications (+$300)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/50 border border-slate-800 cursor-pointer hover:bg-slate-800 transition-colors">
+                                <input type="checkbox" onchange="calcEstimate()" value="250" class="est-feature w-4 h-4 accent-emerald-500">
+                                <span class="text-slate-300">Advanced Security & Performance Audit (+$250)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Estimator Summary Card -->
+                <div class="lg:col-span-4 glass-card rounded-2xl p-6 border border-slate-800 space-y-6 sticky top-28">
+                    <h3 class="text-lg font-bold text-slate-100 border-b border-slate-800 pb-3">Project Estimate</h3>
+                    
+                    <div>
+                        <div class="text-3xl sm:text-4xl font-extrabold gradient-text" id="estPriceDisplay">$1,800 - $2,200</div>
+                        <p class="text-xs text-slate-400 mt-1">Estimated Timeline: <span id="estTimeline" class="text-slate-200 font-semibold">2 - 3 Weeks</span></p>
+                    </div>
+
+                    <ul class="space-y-2 text-xs text-slate-300 font-mono">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Direct Developer Access (22+ Yrs Experience)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Fully Responsive & Mobile Optimized</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Full Code Ownership & Deployment Support</li>
+                    </ul>
+
+                    <button onclick="applyEstimateToContact()" class="w-full py-3.5 rounded-xl gradient-bg text-white font-semibold text-sm shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-[1.02] transition-all">
+                        Pre-fill Form & Contact Samir
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-400 mb-2">Technical Proficiency</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-100">Core Stack & Ecosystem</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Frontend -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-lg">
+                            <i class="fa-brands fa-react"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-100 text-lg">Frontend & UI</h3>
+                    </div>
+                    <ul class="space-y-3 font-mono text-xs text-slate-300">
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>React.js</span>
+                            <span class="text-emerald-400 font-bold">Advanced</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>Tailwind CSS</span>
+                            <span class="text-emerald-400 font-bold">Expert</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>JavaScript (ES6+) / HTML5</span>
+                            <span class="text-emerald-400 font-bold">Master</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>Responsive & Mobile First</span>
+                            <span class="text-emerald-400 font-bold">Master</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Backend & CMS -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-lg">
+                            <i class="fa-brands fa-php"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-100 text-lg">Backend & CMS</h3>
+                    </div>
+                    <ul class="space-y-3 font-mono text-xs text-slate-300">
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>WordPress Architecture</span>
+                            <span class="text-emerald-400 font-bold">Master (22 Yrs)</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>PHP Custom Dashboards</span>
+                            <span class="text-emerald-400 font-bold">Expert</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>Node.js / Express</span>
+                            <span class="text-emerald-400 font-bold">Advanced</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>MySQL Database Admin</span>
+                            <span class="text-emerald-400 font-bold">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Payments & AI Automations -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-lg">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-100 text-lg">Payments & AI Automations</h3>
+                    </div>
+                    <ul class="space-y-3 font-mono text-xs text-slate-300">
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>Thawani E-Payment Oman</span>
+                            <span class="text-emerald-400 font-bold">SDK Author</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>Stripe SEPA / Giropay</span>
+                            <span class="text-emerald-400 font-bold">Expert</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>AI Workflows (n8n / Agents)</span>
+                            <span class="text-emerald-400 font-bold">Current Focus</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
+                            <span>Linux & Server Admin</span>
+                            <span class="text-emerald-400 font-bold">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-slate-900/40 relative border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-400 mb-2">22+ Years Journey</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-slate-100">Experience & Evolution</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto relative border-l-2 border-slate-800 ml-4 md:ml-auto space-y-8 pl-6 md:pl-8">
+                
+                <!-- Current: 2024 - Present -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-slate-950"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-lg font-bold text-slate-100">AI Automation & Advanced Payment Systems</h3>
+                            <span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-mono text-xs">2024 - Present</span>
+                        </div>
+                        <p class="text-xs font-mono text-slate-400">Freelance Systems Architect</p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Developing intelligent workflow automation agents using n8n and LLM integration alongside maintaining e-payment solutions (Thawani Oman backend SDK and Stripe European methods).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2018 - 2023 -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-cyan-500 border-4 border-slate-950"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-lg font-bold text-slate-100">Custom React Web Apps & Dashboards</h3>
+                            <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 font-mono text-xs">2018 - 2023</span>
+                        </div>
+                        <p class="text-xs font-mono text-slate-400">International Web Developer (Germany & Oman)</p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Engineered bespoke single-page applications including Nilo Massage Berlin (Germany) and Hamed Al Amri Legal Portal (Oman) using React, Tailwind CSS, and custom PHP backend systems.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2002 - 2017 -->
+                <div class="relative">
+                    <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-slate-600 border-4 border-slate-950"></div>
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-2">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <h3 class="text-lg font-bold text-slate-100">Enterprise WordPress & Web Solutions</h3>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-slate-400 font-mono text-xs">2002 - 2017</span>
+                        </div>
+                        <p class="text-xs font-mono text-slate-400">Freelance Web Developer & Systems Administrator</p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Built and maintained dozens of corporate platforms, medical gateways, legal websites, and IT service portals for clients in Oman, Thailand, and Europe.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Left -->
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-xs font-mono font-semibold uppercase tracking-widest text-emerald-400">Let's Connect</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-100">Start Your Next Project</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Have a project in mind or need assistance with custom React development, payment gateway integration, WordPress sites, or AI workflows? Contact me directly!
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4 p-4 rounded-2xl glass-card border border-slate-800">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-lg">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-xs text-slate-400 font-mono">Email Address</div>
+                                <a href="mailto:samirosman2@gmail.com" class="text-slate-200 font-semibold hover:text-emerald-400 transition-colors">samirosman2@gmail.com</a>
+                            </div>
+                            <button onclick="copyEmail()" class="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-emerald-400 transition-colors" title="Copy Email">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-4 p-4 rounded-2xl glass-card border border-slate-800">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-lg">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                            <div class="flex-1">
+                                <div class="text-xs text-slate-400 font-mono">GitHub Profile</div>
+                                <a href="https://github.com/samirosman2" target="_blank" class="text-slate-200 font-semibold hover:text-emerald-400 transition-colors">github.com/samirosman2</a>
+                            </div>
+                            <a href="https://github.com/samirosman2" target="_blank" class="p-2.5 rounded-xl bg-slate-900 text-slate-400 hover:text-cyan-400 transition-colors">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Form Right -->
+                <div class="lg:col-span-7 glass-card rounded-2xl p-6 sm:p-8 border border-slate-800">
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-2">Your Name *</label>
+                                <input type="text" id="contactName" required placeholder="John Doe" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 text-sm outline-none focus:border-emerald-500 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono text-slate-300 mb-2">Your Email *</label>
+                                <input type="email" id="contactEmail" required placeholder="john@example.com" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 text-sm outline-none focus:border-emerald-500 transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2">Subject / Inquiry Type</label>
+                            <input type="text" id="contactSubject" placeholder="New Web App / Payment Integration Project" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 text-sm outline-none focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono text-slate-300 mb-2">Message *</label>
+                            <textarea id="contactMessage" rows="5" required placeholder="Describe your project, timeline, or requirements..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 text-sm outline-none focus:border-emerald-500 transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" id="contactSubmitBtn" class="w-full py-4 rounded-xl gradient-bg text-white font-semibold text-sm shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-paper-plane"></i> Send Direct Email Inquiry
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-card w-full max-w-2xl rounded-2xl border border-slate-800 overflow-hidden shadow-2xl space-y-0">
+            <div class="bg-slate-900 p-4 border-b border-slate-800 flex justify-between items-center">
+                <h3 id="modalTitle" class="font-bold text-slate-100 text-base">Project Details</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                <p id="modalCategory" class="text-xs text-emerald-400 font-mono"></p>
+                <p id="modalDesc" class="text-slate-300 text-sm leading-relaxed"></p>
+                <div class="flex flex-wrap gap-2 font-mono text-xs pt-2" id="modalTags"></div>
+                <div class="pt-4 border-t border-slate-800 flex justify-end gap-3" id="modalActions"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden glass-card border border-emerald-500/50 text-slate-100 px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 font-mono text-xs">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMsg">Notification</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-900 py-8 text-center text-slate-500 text-xs font-mono">
+        <p>© <span id="currentYear">2026</span> Samir Ali. Senior Full-Stack Developer & Systems Admin (Since 2002).</p>
+    </footer>
+
+    <script>
+        // Set Year Dynamically
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Mobile Nav Toggle
+        function toggleMobileNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+
+        // Dark/Light Theme Switcher
+        let isDarkMode = true;
+        function toggleTheme() {
+            isDarkMode = !isDarkMode;
+            const body = document.getElementById('appBody');
+            const icon = document.getElementById('themeIcon');
+            const iconMobile = document.getElementById('themeIconMobile');
+
+            if (isDarkMode) {
+                body.classList.add('dark');
+                body.classList.remove('bg-slate-50', 'text-slate-900');
+                body.classList.add('bg-slate-950', 'text-slate-100');
+                icon.className = 'fa-solid fa-moon text-base';
+                iconMobile.className = 'fa-solid fa-moon text-sm';
+            } else {
+                body.classList.remove('dark');
+                body.classList.remove('bg-slate-950', 'text-slate-100');
+                body.classList.add('bg-slate-50', 'text-slate-900');
+                icon.className = 'fa-solid fa-sun text-base text-amber-500';
+                iconMobile.className = 'fa-solid fa-sun text-sm text-amber-500';
+            }
+        }
+
+        // Typewriter Animation
+        const heroSkills = [
+            "React & Custom Dashboards",
+            "Enterprise WordPress Sites",
+            "Thawani & Stripe Payment APIs",
+            "AI Workflow Automations"
+        ];
+        let heroIdx = 0, charIdx = 0, isDeleting = false;
+
+        function typeHeroLoop() {
+            const target = document.getElementById('typedHero');
+            if (!target) return;
+            const current = heroSkills[heroIdx];
+
+            if (isDeleting) {
+                target.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                target.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let speed = isDeleting ? 35 : 85;
+            if (!isDeleting && charIdx === current.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                heroIdx = (heroIdx + 1) % heroSkills.length;
+                speed = 400;
+            }
+
+            setTimeout(typeHeroLoop, speed);
+        }
+        typeHeroLoop();
+
+        // Projects Data Array
+        const projects = [
+            {
+                id: "hamedalamri",
+                title: "Hamed Al Amri Law Firm",
+                type: "custom",
+                category: "Law Firm Management | Oman 🇴🇲",
+                desc: "Custom law firm portal built with React, Tailwind CSS, and a custom PHP backend admin dashboard for handling client consultation inquiries and legal case management.",
+                url: "https://hamed-al-amri.vercel.app/",
+                tags: ["React", "Tailwind CSS", "PHP", "Custom Dashboard", "Law Firm"],
+                icon: "fa-solid fa-scale-balanced text-emerald-400"
+            },
+            {
+                id: "nilomassage",
+                title: "Nilo Massage Berlin",
+                type: "custom",
+                category: "Wellness & Appointments | Germany 🇩🇪",
+                desc: "Tailored web application for wellness and massage services in Berlin featuring client appointment scheduling, service catalog, and smooth responsive UI.",
+                url: "https://www.nilomassageberlin.de/",
+                tags: ["React", "Tailwind CSS", "PHP Backend", "Booking System"],
+                icon: "fa-solid fa-spa text-cyan-400"
+            },
+            {
+                id: "smartnetwork",
+                title: "Smart Network Trading",
+                type: "wordpress",
+                category: "Corporate IT | Oman 🇴🇲",
+                desc: "Corporate IT solutions platform highlighting networking infrastructure, hardware distribution, enterprise tech services, and business contact workflows.",
+                url: "http://www.smartnetworktrd.com",
+                tags: ["WordPress", "Corporate IT", "Information Technology"],
+                icon: "fa-solid fa-network-wired text-indigo-400"
+            },
+            {
+                id: "gulfmedical",
+                title: "Gulf Medical Gate",
+                type: "wordpress",
+                category: "Healthcare & Referral | Thailand 🇹🇭",
+                desc: "Medical referral gateway connecting overseas patients with accredited hospitals and specialized medical care providers in Thailand.",
+                url: "http://www.gulfmedicalgate.com",
+                tags: ["WordPress", "Medical Services", "Healthcare Directory"],
+                icon: "fa-solid fa-hospital text-rose-400"
+            },
+            {
+                id: "themaloman",
+                title: "The Legal Group (Muhanned Al Amri)",
+                type: "wordpress",
+                category: "Law Firm | Oman 🇴🇲",
+                desc: "Comprehensive legal agency portal providing practice area details, legal insights, client resources, and multi-language support.",
+                url: "https://themaloman.com/",
+                tags: ["WordPress", "Legal Services", "SEO", "Law Firm"],
+                icon: "fa-solid fa-gavel text-amber-400"
+            },
+            {
+                id: "thawani",
+                title: "Thawani Payment Backend SDK",
+                type: "fintech_ai",
+                category: "FinTech & Payment Gateway | Oman 🇴🇲",
+                desc: "Node.js backend library and SDK integration for processing e-payments securely via Oman's official Thawani Gateway API.",
+                url: "https://github.com/samirosman2",
+                tags: ["Node.js", "Thawani API", "E-Payment Oman", "SDK"],
+                icon: "fa-brands fa-node-js text-emerald-400"
+            },
+            {
+                id: "stripe_eu",
+                title: "Stripe EU Localized Integration",
+                type: "fintech_ai",
+                category: "FinTech & E-Commerce | Germany 🇩🇪",
+                desc: "Custom payment processing module tailored for European payment methods including SEPA direct debit, Giropay, Sofort, and Stripe Webhooks.",
+                url: "https://github.com/samirosman2",
+                tags: ["Node.js", "Stripe API", "SEPA", "Giropay", "Webhooks"],
+                icon: "fa-brands fa-stripe text-indigo-400"
+            },
+            {
+                id: "ai_auto",
+                title: "AI Agent & Workflow Automations",
+                type: "fintech_ai",
+                category: "AI & Automation (Current Focus)",
+                desc: "Automated business workflows utilizing n8n pipelines, Python scripts, and OpenAI/LLM integrations for automated email handling and lead management.",
+                url: "https://github.com/samirosman2",
+                tags: ["AI Agents", "n8n", "LLM APIs", "Python", "Automation"],
+                icon: "fa-solid fa-robot text-purple-400"
+            }
+        ];
+
+        // Render Project Cards
+        function renderProjects(filter = 'all') {
+            const container = document.getElementById('projectsContainer');
+            container.innerHTML = '';
+
+            const filtered = filter === 'all' ? projects : projects.filter(p => p.type === filter);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl p-6 border border-slate-800 hover:border-emerald-500/50 transition-all flex flex-col justify-between group space-y-4";
+                
+                card.innerHTML = `
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xl">
+                                <i class="${p.icon}"></i>
+                            </span>
+                            <span class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">${p.category}</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-100 group-hover:text-emerald-400 transition-colors">${p.title}</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed">${p.desc}</p>
+                    </div>
+
+                    <div class="space-y-4 pt-2 border-t border-slate-800/80">
+                        <div class="flex flex-wrap gap-1.5 font-mono text-[10px]">
+                            ${p.tags.map(t => `<span class="px-2 py-0.5 rounded bg-slate-900 text-slate-300 border border-slate-800">${t}</span>`).join('')}
+                        </div>
+                        <div class="flex items-center justify-between text-xs pt-1">
+                            <button onclick="openModal('${p.id}')" class="text-slate-400 hover:text-white transition-colors">
+                                Details &rarr;
+                            </button>
+                            <a href="${p.url}" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 font-semibold transition-colors flex items-center gap-1">
+                                Launch <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        renderProjects();
+
+        function filterProjects(cat) {
+            document.querySelectorAll('.proj-tab').forEach(b => {
+                b.className = 'proj-tab px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:bg-slate-800 transition-all';
+            });
+            event.target.className = 'proj-tab active-tab px-4 py-2 rounded-xl bg-emerald-600 text-white transition-all';
+            renderProjects(cat);
+        }
+
+        // Modal Functions
+        function openModal(id) {
+            const p = projects.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalCategory').textContent = p.category;
+            document.getElementById('modalDesc').textContent = p.desc;
+            
+            const tags = document.getElementById('modalTags');
+            tags.innerHTML = p.tags.map(t => `<span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-300">${t}</span>`).join('');
+
+            const actions = document.getElementById('modalActions');
+            actions.innerHTML = `
+                <a href="${p.url}" target="_blank" class="px-4 py-2 rounded-xl gradient-bg text-white font-semibold text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-external-link"></i> Launch Live Site / Repo
+                </a>
+            `;
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Scope & Cost Estimator Logic
+        let selectedBasePrice = 1800;
+        let selectedBaselineName = "Custom React / PHP Dashboard App";
+
+        function selectEstimatorType(typeKey, price, name, btn) {
+            selectedBasePrice = price;
+            selectedBaselineName = name;
+
+            document.querySelectorAll('.estimator-btn').forEach(b => {
+                b.className = 'estimator-btn p-4 rounded-xl bg-slate-900/60 border border-slate-800 text-left transition-all';
+            });
+            btn.className = 'estimator-btn active-est-btn p-4 rounded-xl bg-slate-900 border border-emerald-500 text-left transition-all';
+
+            calcEstimate();
+        }
+
+        function calcEstimate() {
+            let total = selectedBasePrice;
+            document.querySelectorAll('.est-feature:checked').forEach(cb => {
+                total += parseInt(cb.value);
+            });
+
+            document.getElementById('estPriceDisplay').textContent = `$${total.toLocaleString()} - $${(total + 400).toLocaleString()}`;
+            
+            let timeline = "1 - 2 Weeks";
+            if (total > 1500) timeline = "2 - 3 Weeks";
+            if (total > 2200) timeline = "3 - 5 Weeks";
+            document.getElementById('estTimeline').textContent = timeline;
+        }
+
+        function applyEstimateToContact() {
+            const estPrice = document.getElementById('estPriceDisplay').textContent;
+            const subj = document.getElementById('contactSubject');
+            const msg = document.getElementById('contactMessage');
+
+            subj.value = `Inquiry: ${selectedBaselineName}`;
+            msg.value = `Hi Samir,\n\nI would like to discuss a project for: ${selectedBaselineName}.\nEstimated Scope/Budget: ${estPrice}.\n\nPlease let me know your current availability.`;
+
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            showToast("Form pre-filled with project scope!");
+        }
+
+        // Contact Handling & Copy Email
+        function copyEmail() {
+            const email = "samirosman2@gmail.com";
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            showToast("Copied samirosman2@gmail.com to clipboard!");
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value || 'Project Inquiry';
+            const body = document.getElementById('contactMessage').value;
+
+            // Trigger mailto client
+            const mailtoUrl = `mailto:samirosman2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + body)}`;
+            window.location.href = mailtoUrl;
+
+            showToast("Opening mail client...");
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3500);
+        }
+    </script>
+</body>
+</html>
